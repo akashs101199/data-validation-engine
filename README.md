@@ -5,7 +5,6 @@
 [![Python](https://img.shields.io/badge/Python-3.9+-blue.svg)](https://www.python.org/downloads/)
 [![Mistral](https://img.shields.io/badge/Mistral-7B-orange.svg)](https://mistral.ai/)
 [![LangChain](https://img.shields.io/badge/LangChain-🦜-green.svg)](https://www.langchain.com/)
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 ## 🚀 What Makes This Different?
 
@@ -555,3 +554,4 @@ MIT License - see [LICENSE](LICENSE) file for details.
 [![Star History](https://api.star-history.com/svg?repos=akashs101199/genai-data-validator&type=Date)](https://star-history.com/#akashs101199/genai-data-validator&Date)
 
 </div>
+
