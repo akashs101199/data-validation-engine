@@ -1,53 +1,64 @@
 # Python
-.venv/
-venv/
 __pycache__/
-*.pyc
-*.pyo
-*.pyd
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
 *.egg-info/
-.ipynb_checkpoints/
+.installed.cfg
+*.egg
 
-# OS / IDE
-.DS_Store
+# Virtual Environment
+venv/
+env/
+ENV/
+
+# IDE
 .vscode/
 .idea/
+*.swp
+*.swo
+.DS_Store
 
-# Env & creds
-.env
-*.env
+# Data files
+data/bronze/*.parquet
+data/silver/*.parquet
+data/gold/*.parquet
+data/raw/*.csv
+data/*.duckdb
+data/*.duckdb.wal
 
-# Data & artifacts (tune as you like)
-data/raw/
-data/interim/
+# Logs
+logs/*.log
 *.log
-*.sqlite
-*.db
 
-# Big libs we never want in git
-**/*.dylib
-**/jars/*.jar
-.venv/
-venv/
-**/*.dylib
-**/jars/*.jar
+# Reports
+reports/*.html
+reports/*.csv
+reports/*.png
 
+# Prefect
+.prefect/
 
-# === Data validation outputs ===
-data/
-reports/
-*.csv
-*.png
-.venv/
-venv/
-**/*.dylib
-**/jars/*.jar
+# Environment variables
+.env
 
-.venv/
-venv/
-**/*.dylib
-**/jars/*.jar
-.venv/
-venv/
-**/*.dylib
-**/jars/*.jar
+# Jupyter
+.ipynb_checkpoints/
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
