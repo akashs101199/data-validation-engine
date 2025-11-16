@@ -1,0 +1,74 @@
+pipeline:
+  name: "agentic-ecommerce-etl"
+  version: "1.0.0"
+  schedule: "0 0 * * *"
+  
+  sources:
+    - name: "ecommerce_transactions"
+      type: "csv"
+      path: "data/raw/ecommerce_transactions.csv"
+      schema: "ecommerce"
+      incremental:
+        enabled: true
+        key: "order_id"
+        timestamp_column: "order_date"
+  
+  transformations:
+    silver:
+      - name: "clean_whitespace"
+        enabled: true
+      - name: "standardize_formats"
+        enabled: true
+      - name: "deduplicate"
+        enabled: true
+        key: ["order_id"]
+      - name: "validate_business_rules"
+        enabled: true
+      - name: "detect_anomalies"
+        enabled: true
+    
+    gold:
+      - name: "daily_sales_summary"
+        enabled: true
+      - name: "customer_segmentation"
+        enabled: true
+      - name: "product_analytics"
+        enabled: true
+  
+  data_quality:
+    auto_remediation:
+      enabled: true
+      max_attempts: 3
+    
+    quarantine:
+      enabled: true
+      path: "data/quarantine/"
+    
+    alerts:
+      enabled: true
+      threshold:
+        error_rate: 0.05
+        missing_rate: 0.10
+  
+  agents:
+    profiler:
+      enabled: true
+      auto_generate_expectations: true
+    
+    quality_monitor:
+      enabled: true
+      drift_detection: true
+      anomaly_detection: true
+    
+    remediation:
+      enabled: true
+      strategies:
+        - "impute_missing"
+        - "correct_outliers"
+        - "fix_formats"
+        - "resolve_duplicates"
+
+logging:
+  level: "INFO"
+  format: "json"
+  output: "logs/pipeline.log"

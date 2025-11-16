@@ -1,0 +1,39 @@
+medallion:
+  bronze:
+    path: "data/bronze/"
+    description: "Raw data landing zone - no transformations"
+    retention_days: 90
+    format: "parquet"
+    partitioning:
+      enabled: true
+      columns: ["order_date"]
+  
+  silver:
+    path: "data/silver/"
+    description: "Cleaned, validated, and deduplicated data"
+    retention_days: 180
+    format: "parquet"
+    quality_checks:
+      - no_nulls: ["customer_id", "order_id", "order_date"]
+      - positive_values: ["quantity", "unit_price", "total_amount"]
+      - valid_ranges:
+          customer_age: [18, 100]
+          satisfaction_score: [1, 10]
+          discount_percent: [0, 50]
+    
+  gold:
+    path: "data/gold/"
+    description: "Business-ready aggregated data"
+    retention_days: 365
+    format: "parquet"
+    aggregations:
+      - daily_sales
+      - customer_lifetime_value
+      - product_performance
+      - regional_analytics
+
+database:
+  duckdb:
+    path: "data/analytics.duckdb"
+    memory_limit: "2GB"
+    threads: 4
